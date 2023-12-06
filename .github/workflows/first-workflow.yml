@@ -3,7 +3,9 @@ on:
  issues:
   types:
     opened
- 
+
+env:
+ VAR1: 'Ready for prod-ship it!'
  
 name: Training Test Wf
 jobs: 
@@ -25,7 +27,7 @@ jobs:
      uses: mscoutermarsh/cowsays-action@v1
      with:
       # What does the cow say?
-      text: 'Ready for prod-ship it!'
+      text: ${{ env.VAR1 }}
       # Color of your cow
       color: magenta
           
