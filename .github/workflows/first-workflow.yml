@@ -1,0 +1,10 @@
+on: [workflow_dispatch]
+name: Training Test Wf
+jobs: 
+ job1:
+  name: Job1
+  runs-on: ubuntu-latest
+  steps:
+    - run: echo 'Step 1 complete!'
+    - run: echo 'Step 2 complete!'
+ 
