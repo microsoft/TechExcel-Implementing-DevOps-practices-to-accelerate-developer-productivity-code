@@ -2,7 +2,7 @@ on:
  workflow_dispatch:
  issues:
   types:
-   created
+    opened
  
  
 name: Training Test Wf
