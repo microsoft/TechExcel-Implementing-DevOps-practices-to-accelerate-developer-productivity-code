@@ -1,4 +1,10 @@
-on: [workflow_dispatch]
+on: 
+ workflow_dispatch:
+ issues:
+  types:
+   created
+ 
+ 
 name: Training Test Wf
 jobs: 
  job1:
@@ -10,6 +16,7 @@ jobs:
 
  job2:
   name: Job2
+  needs: [job1]
   runs-on: ubuntu-latest
   steps:
    - name: Cowsays
