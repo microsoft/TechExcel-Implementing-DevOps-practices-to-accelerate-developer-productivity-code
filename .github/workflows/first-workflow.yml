@@ -1,0 +1,31 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  workflow_dispatch:
+  
+  # push:
+  #  branches: [ "main" ]
+  # pull_request:
+  #  branches: [ "main" ]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Step one
+      run: echo "Step 1 complete!"
+
+      
+  job2:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cowsays
+      uses: mscoutermarsh/cowsays-action@master
+      with:
+        text: 'Ready for prod-ship it!'
+        color: 'magenta'
