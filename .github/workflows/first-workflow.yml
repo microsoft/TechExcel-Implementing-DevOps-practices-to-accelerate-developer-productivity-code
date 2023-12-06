@@ -14,6 +14,8 @@ jobs:
       run: echo "Log from step one"
     - name: Step two
       run: echo "Log from step two"
+    - name: Step three
+      run: echo "Log from step three"
       
   job2:
     needs: job1
