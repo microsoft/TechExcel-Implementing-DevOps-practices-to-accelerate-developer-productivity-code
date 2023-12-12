@@ -1,6 +1,7 @@
 @description('Environment of the web app')
 param environment string = 'dev'
 
+#adding a comment to test the commit process
 @description('Location of services')
 param location string = resourceGroup().location
 
