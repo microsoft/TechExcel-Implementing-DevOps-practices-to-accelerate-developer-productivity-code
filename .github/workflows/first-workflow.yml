@@ -1,4 +1,10 @@
-on: workflow_dispatch
+name: First Workflow
+
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+    
 jobs:
   job1:
     runs-on: ubuntu-latest
