@@ -4,16 +4,18 @@ on:
   workflow_dispatch:
   issues:
     types: [opened]
-
+env:
+    run_on: "Monday"
 jobs:
   job1:
     runs-on: ubuntu-latest
-
+    env:
+       workflow_name: "First_workflow"
     steps:
     - name: Step one
-      run: echo "Log from step one"
+      run: echo "Log from step one in $workflow_name"
     - name: Step two
-      run: echo "Log from step two"
+      run: echo "Log from step two run on $run_on"
       
   job2:
     needs: job1
