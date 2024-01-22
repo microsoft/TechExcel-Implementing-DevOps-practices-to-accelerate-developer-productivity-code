@@ -20,8 +20,11 @@ jobs:
   job2:
     needs: job1
     runs-on: ubuntu-latest
+    environment: Dev
 
     steps:
+    - name: Run By
+      run: echo "Run by ${{ vars.User }}"
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
