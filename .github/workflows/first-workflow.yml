@@ -30,3 +30,6 @@ jobs:
       with:
         text: 'Ready for prod--ship it!'
         color: 'magenta'
+    - name:
+      run: echo "format('Hello {0} {1} {2}', 'Mona', 'the', 'Octocat'))"
+      if: contains('Hello world', 'llo')
