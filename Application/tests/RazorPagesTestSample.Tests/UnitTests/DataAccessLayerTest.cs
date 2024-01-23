@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using RazorPagesTestSample.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesTestSample.Tests.UnitTests
 {
@@ -11,7 +12,7 @@ namespace RazorPagesTestSample.Tests.UnitTests
     {
         [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()
-        {
+         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 // Arrange
@@ -49,6 +50,31 @@ namespace RazorPagesTestSample.Tests.UnitTests
         }
 
         [Fact]
+        public async Task AddMessageAsyn_MessageTextLength400_MessageIsNotAdded()
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                // Arrange
+                var recId = 10;
+                var expectedMessage = new Message() { Id = recId, Text = new string('x', 400) };
+
+                // Act
+                try
+                {
+                    await db.AddMessageAsync(expectedMessage);
+                }
+                catch
+                {
+                    // Message text is too long
+                }
+
+                // Assert
+                var actualMessage = await db.FindAsync<Message>(recId);
+                Assert.Null(actualMessage);
+            }
+        }
+
+        [Fact]
         public async Task DeleteAllMessagesAsync_MessagesAreDeleted()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
@@ -68,7 +94,7 @@ namespace RazorPagesTestSample.Tests.UnitTests
 
         [Fact]
         public async Task DeleteMessageAsync_MessageIsDeleted_WhenMessageIsFound()
-        {
+         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
                 #region snippet1
@@ -126,5 +152,33 @@ namespace RazorPagesTestSample.Tests.UnitTests
             }
         }
         #endregion
+
+        [Theory]
+        [InlineData(150, true)]
+        [InlineData(200, true)]
+        [InlineData(225, true)]
+        [InlineData(250, true)]
+        [InlineData(275, false)]
+        [InlineData(300, false)]
+        public void Message_TextLengthIsValid(int textLength, bool expected)
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                // Arrange
+                var recId = 10;
+                var message = new Message() { Id = recId, Text = new string('x', textLength) };
+                var validationContext = new ValidationContext(message, null, null);
+                var validationResults = new List<ValidationResult>();
+                
+                // Act
+                var actual = Validator.TryValidateObject(message, validationContext, validationResults, true);
+
+                // Assert
+                Assert.Equal(expected, actual);
+            }
+            
+        }
+
     }
 }
+

@@ -30,4 +30,9 @@
     </Reference>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RazorPagesTestSample\RazorPagesTestSample.csproj" />
+  </ItemGroup>
+
 </Project>
