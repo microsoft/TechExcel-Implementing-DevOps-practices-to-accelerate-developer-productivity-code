@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesTestSample", "RazorPagesTestSample.csproj", "{BE1E794D-8E4A-4676-8711-A0DBF523EAE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesTestSample.Tests", "..\..\tests\RazorPagesTestSample.Tests\RazorPagesTestSample.Tests.csproj", "{0FB03824-D5D7-4B64-84DD-42578BA4640C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
