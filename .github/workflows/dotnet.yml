@@ -75,5 +75,5 @@ jobs:
         uses: Azure/webapps-deploy@v2
         with:
           app-name: ${{ env.prefix }}-dev
-          images: $registryName/$repositoryName:$tag
+          images: qo3zstjgutwp2mpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
           
