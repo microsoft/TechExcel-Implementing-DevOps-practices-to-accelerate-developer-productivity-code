@@ -14,6 +14,9 @@ on:
   issues:
     types: [opened]
 
+env:  # Define environment variables for the entire workflow
+  MY_ENV_VAR: "Hello, World!"
+
 # This section covers the work to perform.
 # We include one or more jobs in this section.
 jobs:
@@ -52,5 +55,6 @@ jobs:
       # The 'with' block includes parameters that the workflow will pass
       # to this action. Parameters are all in key-value format.
       with:
-        text: 'Ready for prod--ship it!'
+        # text: 'Ready for prod--ship it!'
+        text: ${{ env.MY_ENV_VAR }}
         color: 'magenta'
