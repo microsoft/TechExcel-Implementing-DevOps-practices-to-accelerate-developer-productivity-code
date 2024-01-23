@@ -64,7 +64,7 @@ jobs:
     needs: buildImageAndPush
     environment:
       name: dev
-      url: https://${prefix}-dev.azurewebsites.net/
+      url: https://${{ env.prefix }}-dev.azurewebsites.net/
     
     steps:
       - name: 'Login via Azure CLI'
@@ -74,6 +74,6 @@ jobs:
       - name : 'Deploy App to Dev'
         uses: Azure/webapps-deploy@v2
         with:
-          app-name: ${prefix}-dev
+          app-name: ${{ env.prefix }}-dev
           images: $registryName/$repositoryName:$tag
           
