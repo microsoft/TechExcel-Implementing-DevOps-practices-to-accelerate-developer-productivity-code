@@ -57,4 +57,4 @@
           resourceGroupName: DevProductivityWorkshop-rg
           template: ./InfrastructureAsCode/main.bicep
           # Use the environment variable called targetEnv
-          parameters: environment=$targetEnv
+          parameters: environment=${{ env.targetEnv }}
