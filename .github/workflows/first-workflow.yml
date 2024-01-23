@@ -16,5 +16,6 @@ jobs:
     steps:
       - name: Cowsays
         with:
+          run: echo "Step cowsays complete!"
           message: "Ready for prod–ship it!"
           color: "magenta"
