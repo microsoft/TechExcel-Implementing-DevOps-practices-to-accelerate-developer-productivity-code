@@ -12,15 +12,23 @@
   # The overall workflow name will be Azure Bicep. This will show up in the
   # GitHub Action page.
   name: Azure Bicep
+
+  # Add permissions to the GitHub Action. This is required to allow the GitHub
+  permissions:
+    # We need to allow the GitHub Action to check out the code from the repository
+    # and to push the code back to the repository
+    # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions
+    id-token: write
+    contents: read
+    packages: write
+
   jobs:
     # This script has one job: build and deploy the IaC resources
     build-and-deploy:
       # We run this on an Ubuntu-based GitHub hosted runner. This hosted runner
       # has certain software already installed, including az cli
       runs-on: ubuntu-latest
-      permissions:
-        id-token: write
-        contents: read
+        
       steps:
       # Check out the code. This grabs code from the repository and
       # makes it available to the GitHub hosted runner. It will usually be the
