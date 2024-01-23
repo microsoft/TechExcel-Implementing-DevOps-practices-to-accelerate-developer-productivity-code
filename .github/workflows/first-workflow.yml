@@ -15,7 +15,6 @@ jobs:
     needs: job1
     steps:
       - name: Cowsays
-        uses: calibreapp/github-cowsay@1.0
         with:
           message: "Ready for prod–ship it!"
           color: "magenta"
