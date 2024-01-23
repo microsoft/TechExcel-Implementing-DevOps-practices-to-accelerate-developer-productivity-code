@@ -1,0 +1,5 @@
+name: automate
+on: [workflow_run]
+jobs:
+  runs-on:
+  
