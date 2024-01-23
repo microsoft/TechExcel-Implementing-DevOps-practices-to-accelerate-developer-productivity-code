@@ -76,4 +76,40 @@ jobs:
         with:
           app-name: ${{ env.prefix }}-dev
           images: qo3zstjgutwp2mpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+
+  deploy_to_test:
+    runs-on: ubuntu-latest
+    needs: deploy_to_dev
+    environment:
+      name: test
+      url: https://${{ env.prefix }}-test.azurewebsites.net/
+    
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name : 'Deploy App to Test'
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.prefix }}-test
+          images: qo3zstjgutwp2mpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+  
+  deploy_to_prod:
+    runs-on: ubuntu-latest
+    needs: deploy_to_test
+    environment:
+      name: prod
+      url: https://${{ env.prefix }}-prod.azurewebsites.net/
+    
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name : 'Deploy App to Prod'
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.prefix }}-prod
+          images: qo3zstjgutwp2mpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
           
