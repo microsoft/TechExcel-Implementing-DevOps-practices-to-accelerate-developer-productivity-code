@@ -32,9 +32,10 @@
         # https://github.com/azure/login
       - uses: azure/login@v1
         with:
-          client-id: 90069580-b2a9-4ac3-8bd8-f1dc50207b83
-          tenant-id: e5d47a97-598e-479e-a834-79e4bee42055
-          subscription-id: 2127cf7c-526a-47e4-969a-c3b40f186379
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          #client-id: 90069580-b2a9-4ac3-8bd8-f1dc50207b83
+          #tenant-id: e5d47a97-598e-479e-a834-79e4bee42055
+          #subscription-id: 2127cf7c-526a-47e4-969a-c3b40f186379
           # We also need to ensure that enable-AzPSSession is true. This is important for
           # using OIDC in Azure. If we were to pass in a client secret instead, we would not need
           # this setting enabled
