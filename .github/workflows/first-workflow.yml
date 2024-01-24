@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Step One
+      run: echo "Step one Complete!"
+    - name: Step Two
+      run: echo "Step two Complete!"
+        
