@@ -20,7 +20,7 @@ jobs:
   job2:
     needs: job1
     runs-on: ubuntu-latest
-    environment: Dev
+    environment: test
 
     steps:
     - name: Run By
