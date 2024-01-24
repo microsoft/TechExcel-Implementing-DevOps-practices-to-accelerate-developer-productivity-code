@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Step One
-      run: echo "Step one Complete!"
+      run: echo StepOneMessage
+      env:
+        StepOneMessage: "Step one Complete"
     - name: Step Two
       run: echo "Step two Complete!"
         
