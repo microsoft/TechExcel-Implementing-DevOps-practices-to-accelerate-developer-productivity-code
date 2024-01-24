@@ -14,6 +14,7 @@ namespace RazorPagesTestSample.Pages
 
         public IndexModel(AppDbContext db)
         {
+            // comment added to test PR
             _db = db;
         }
 
