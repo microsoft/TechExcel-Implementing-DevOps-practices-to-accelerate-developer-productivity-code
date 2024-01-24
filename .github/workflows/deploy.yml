@@ -1,5 +1,5 @@
 on:
-    workflow_dispatch # teste
+    workflow_dispatch
   
   env:
     targetEnv: dev
