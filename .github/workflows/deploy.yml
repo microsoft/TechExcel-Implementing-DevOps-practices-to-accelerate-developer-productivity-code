@@ -7,17 +7,28 @@
   # Open the deploy-advanced.yml file to see how we can accept user input
   # instead of needing to change this file to switch environments.
   env:
-    targetEnv: dev
+    targetEnv: prod
 
   # The overall workflow name will be Azure Bicep. This will show up in the
   # GitHub Action page.
   name: Azure Bicep
+
+  # Add permissions to the GitHub Action. This is required to allow the GitHub
+  permissions:
+    # We need to allow the GitHub Action to check out the code from the repository
+    # and to push the code back to the repository
+    # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions
+    id-token: write
+    contents: read
+    packages: write
+
   jobs:
     # This script has one job: build and deploy the IaC resources
     build-and-deploy:
       # We run this on an Ubuntu-based GitHub hosted runner. This hosted runner
       # has certain software already installed, including az cli
       runs-on: ubuntu-latest
+        
       steps:
       # Check out the code. This grabs code from the repository and
       # makes it available to the GitHub hosted runner. It will usually be the
@@ -30,23 +41,20 @@
         # Tenant ID = Application owner organization ID (previously called Tenant ID in Azure)
         # Subscription ID
         # https://github.com/azure/login
-      - uses: azure/login@v1
+      - name: 'Az CLI login'
+        uses: azure/login@v1
         with:
-          client-id: 90069580-b2a9-4ac3-8bd8-f1dc50207b83
-          tenant-id: e5d47a97-598e-479e-a834-79e4bee42055
-          subscription-id: 2127cf7c-526a-47e4-969a-c3b40f186379
-          # We also need to ensure that enable-AzPSSession is true. This is important for
-          # using OIDC in Azure. If we were to pass in a client secret instead, we would not need
-          # this setting enabled
-          enable-AzPSSession: true
-
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+          
         # Deploy ARM template
       - name: Run ARM deploy
         # https://github.com/azure/arm-deploy
         uses: azure/arm-deploy@v1
         with:
-          subscriptionId: 2127cf7c-526a-47e4-969a-c3b40f186379
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: DevProductivityWorkshop-rg
           template: ./InfrastructureAsCode/main.bicep
           # Use the environment variable called targetEnv
-          parameters: environment=$targetEnv
+          parameters: environment=${{ env.targetEnv }}
