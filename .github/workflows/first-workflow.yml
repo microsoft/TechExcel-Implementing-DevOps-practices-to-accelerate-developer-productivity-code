@@ -1,21 +1,26 @@
-name: First Workflow
+name: My First Workflow
 
 on:
   workflow_dispatch:
-    branches: [main]
+
+  issues:
+    types: [opened, reopened]
 
 jobs:
-    name: First Job
-    runs-on: ubuntu-latest
-    steps:
-        name: First Step
-        run: echo "Step 1 completed"
-        name: Second Step
-        run: echo "Step 2 completed
+  job1:
+    runs-on: ubuntu-latest  # Use the appropriate runner for your project
 
-    name: Second Job
-    runs-on: ubuntu-latest
     steps:
-        uses: actions/cowsay@v1
-        name: First Step
-        run: echo "Ready for production ship it"
+    - name: Step 1
+      run: echo "This is my first step"
+    - name: Step 2
+      run: echo "This is my second step"
+  job2:
+    runs-on: ubuntu-latest  # Use the appropriate runner for your project
+    steps:
+    - name: Coways
+      uses: actions/cowsay@v1
+      with: 
+        Text: "Ready to Production ship it"
+
+    
