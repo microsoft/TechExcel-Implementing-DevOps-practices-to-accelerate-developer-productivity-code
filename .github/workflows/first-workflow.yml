@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest  # Use the appropriate runner for your project
     steps:
     - name: Coways
-      uses: actions/cowsay@v1
+      uses: mscoutermarsh/cowsays-action@master
       with: 
         Text: "Ready to Production ship it"
-
-    
