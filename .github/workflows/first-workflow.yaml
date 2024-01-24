@@ -1,56 +1,72 @@
-# The name of the job is what will display on the GitHub repository in the Actions tab.
+#
+# First Workflow for this repo and the workshop exercises
+#
 name: First Workflow
 
-# The 'on' section tells GitHub under what conditions we want to run this workflow.
-# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
-# Common scenarios include:
-  # workflow-dispatch (manual execution)
-  # issues
-  # push
-  # pull_request
-  # schedule
+
 on:
   workflow_dispatch:
   issues:
     types: [opened]
 
-# This section covers the work to perform.
-# We include one or more jobs in this section.
+# 
+# Workflow jobs.
+#
 jobs:
-  # Each individual job will include details like execution order,
-  # pre-requisite jobs, and execution platform.
-  job1:
-    # We can run jobs on GitHub hosted VM runners in Windows, Ubuntu, and Mac OS.
-    # We can also run jobs on self-hosted hardware.
+  #
+  # Execute first job
+  # 
+  job-one:
+    # 
+    # Execute first job on GitHub-hosted Ubuntu machine
+    #
     runs-on: ubuntu-latest
 
-    # Each job contains one or more steps. A step needs to have at least a name and a command.
+    # 
+    # Steps to execute for the first job
+    #
     steps:
-    - name: Step one
-      # The 'run' command executes a shell or command script. Because this is Ubuntu, the
-      # default run command will be /bin/bash
-      run: echo "Log from step one"
-      # This section does not appear in the solution file but demonstrates how to set
-      # custom variables that will be available in the run script.
+    - name: Step One
+      # 
+      # Run command in a bash shell script.
+      #
+      run: echo "Log from Step ${STEP_ONE}"
+      # 
+      # Run command with the variable defined below.
+      #
       env:
-        VARIABLE_NAME: value
+        STEP_ONE: One
     - name: Step two
-      run: echo "Log from step two"
+      # 
+      # Run command in a bash shell script.
+      #
+      run: echo "Log from Step ${STEP_TWO}"
+      # 
+      # Run command with the variable defined below.
+      #
+      env:
+        STEP_TWO: Two
       
-  job2:
-    # Job 2 will only run after job 1 completes.
-    # Removing this 'needs' section would make the jobs run simultaneously.
-    needs: job1
+  job-two:
+    # 
+    # Second job is dependent on First job. It will only run after First job completes.
+    # 
+    needs: job-one
+    # 
+    # Execute second job on GitHub-hosted Ubuntu machine
+    #
     runs-on: ubuntu-latest
 
     steps:
     - name: Cowsays
-      # The 'uses' command executes a remote GitHub action.
-      # A command like mscoutermarsh/cowsays-action means you can
-      # find this code at https://github.com/mscoutermarsh/cowsays-action
+      # 
+      # Execute the Cowsays GitHub action.
+      # 
       uses: mscoutermarsh/cowsays-action@master
       # The 'with' block includes parameters that the workflow will pass
       # to this action. Parameters are all in key-value format.
       with:
-        text: 'Ready for prod--ship it!'
+        text: ${{ env.TEXT }}
         color: 'magenta'
+      env:
+        TEXT: 'Ready for prod--ship it!'
