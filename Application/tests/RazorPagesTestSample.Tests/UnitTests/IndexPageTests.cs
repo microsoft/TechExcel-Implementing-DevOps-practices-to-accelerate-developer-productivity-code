@@ -17,8 +17,28 @@ using RazorPagesTestSample.Data;
 
 namespace RazorPagesTestSample.Tests.UnitTests
 {
+
     public class IndexPageTests
     {
+        [Theory]
+        [InlineData(100)]
+        [InlineData(200)]
+        [InlineData(300)]
+        public async Task OnPostInsertMessageAsync_InsertsMessageWithGivenNumberOfCharacters(int numberOfCharacters)
+        {
+            // Arrange
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase("InMemoryDb");
+            var mockAppDbContext = new Mock<AppDbContext>(optionsBuilder.Options);
+            var pageModel = new IndexModel(mockAppDbContext.Object);
+            var expectedMessage = new Message() { Id = 1, Text = new string('A', numberOfCharacters) };
+
+            // Act
+            await pageModel.OnPostInsertMessageAsync(numberOfCharacters);
+
+            // Assert
+            mockAppDbContext.Verify(db => db.AddMessageAsync(expectedMessage), Times.Once);
+        }
         [Fact]
         public async Task OnGetAsync_PopulatesThePageModel_WithAListOfMessages()
         {
