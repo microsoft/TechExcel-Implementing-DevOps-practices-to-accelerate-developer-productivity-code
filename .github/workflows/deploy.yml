@@ -5,8 +5,8 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  targetEnv: dev
+# env:
+#   targetEnv: dev
 
 name: Azure Bicep
 jobs:
