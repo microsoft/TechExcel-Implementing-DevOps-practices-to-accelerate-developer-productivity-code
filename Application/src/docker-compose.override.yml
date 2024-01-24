@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  razorpagestestsample:
+    environment:
+     - DOTNET_ENVIRONMENT=Development
+     - ASPNETCORE_ENVIRONMENT=Development
+     - ASPNETCORE_HTTP_PORTS=8080
+     - ASPNETCORE_URLS=http://0.0.0.0:80
+     - PATHBASE=/razorpagestestsample
+    networks:
+      - app-network
+    ports:
+      - 5222:80
+    volumes:
+      - app-data:/app:ro
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
+
+volumes:
+  app-data:
+    name: app-data
+    driver: local
