@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using RazorPagesTestSample.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesTestSample.Tests.UnitTests
 {
@@ -29,7 +30,7 @@ namespace RazorPagesTestSample.Tests.UnitTests
                     actualMessages.OrderBy(m => m.Id).Select(m => m.Text));
             }
         }
-
+        
         [Fact]
         public async Task AddMessageAsync_MessageIsAdded()
         {
