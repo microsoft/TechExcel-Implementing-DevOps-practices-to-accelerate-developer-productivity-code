@@ -13,7 +13,7 @@ jobs:
       run: echo "Step two Complete!"
         
   job2:
-    depends: job1
+    needs: job1
     runs-on: ubuntu-latest
     steps:
     - name: Cowsays
