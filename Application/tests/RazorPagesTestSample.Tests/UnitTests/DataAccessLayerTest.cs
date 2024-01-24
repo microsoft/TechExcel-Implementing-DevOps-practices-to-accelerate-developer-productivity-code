@@ -126,5 +126,37 @@ namespace RazorPagesTestSample.Tests.UnitTests
             }
         }
         #endregion
+        
+        [Theory]
+        [InlineData(150)]
+        [InlineData(199)]
+        [InlineData(200)]
+        [InlineData(201)]
+        [InlineData(249)]
+        [InlineData(250)]
+        [InlineData(251)]
+        [InlineData(300)]
+        public void TestMessageLength(int length)
+        {
+            // Arrange
+            var message = new Message();
+            message.Text = new string('a', length);
+
+            // Act
+            var context = new ValidationContext(message, null, null);
+            var results = new List<ValidationResult>();
+
+            // Assert
+            if (length > 250)
+            {
+                Assert.False(Validator.TryValidateObject(message, context, results, true));
+                Assert.Equal("There's a 250 character limit on messages. Please shorten your message.", results[0].ErrorMessage);
+            }
+            else
+            {
+                Assert.True(Validator.TryValidateObject(message, context, results, true));
+            }
+        }
+        
     }
 }
