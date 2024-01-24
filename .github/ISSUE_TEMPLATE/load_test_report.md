@@ -1,4 +1,6 @@
 ---
+name: Tracking issue
+about: Use this template for tracking new features.
 title: Load test failure!
 assignees: rjayapra
 labels: bug
