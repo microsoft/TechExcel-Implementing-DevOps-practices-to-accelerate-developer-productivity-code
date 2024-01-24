@@ -1,1 +1,21 @@
+name: First Workflow
 
+on:
+  workflow_dispatch:
+    branches: [main]
+
+jobs:
+    name: First Job
+    runs-on: ubuntu-latest
+    steps:
+        name: First Step
+        run: echo "Step 1 completed"
+        name: Second Step
+        run: echo "Step 2 completed
+
+    name: Second Job
+    runs-on: ubuntu-latest
+    steps:
+        uses: actions/cowsay@v1
+        name: First Step
+        run: echo "Ready for production ship it"
