@@ -1,14 +1,42 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using RazorPagesTestSample.Data;
 
+
 namespace RazorPagesTestSample.Tests.UnitTests
 {
     public class DataAccessLayerTest
     {
+        // This picks up inside the DataAccessLayerTest class.
+        [Theory]
+        [InlineData(150, true)]
+        [InlineData(199, true)]
+        [InlineData(200, true)]
+        [InlineData(201, true)]
+        [InlineData(249, true)]
+        [InlineData(250, true)]
+        [InlineData(251, false)]
+        [InlineData(300, false)]
+        public async Task AddMessageAsync_TestMessageLength(int messageLength, bool expectedValidMessage)
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                // Arrange
+                var recId = 10;
+                var expectedMessage = new Message() { Id = recId, Text = new string('X', messageLength) };
+
+                // Act
+                var isValidMessage = Validator.TryValidateObject(expectedMessage, new ValidationContext(expectedMessage), null, validateAllProperties: true);
+
+                // Assert
+                Assert.Equal(expectedValidMessage, isValidMessage);
+            }
+        }
+
         [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()
         {
