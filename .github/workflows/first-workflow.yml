@@ -1,6 +1,7 @@
+name: Workflow file 1
 on: workflow_dispatch
 jobs:
-  job1:
+  Job1:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Step 1 complete"
