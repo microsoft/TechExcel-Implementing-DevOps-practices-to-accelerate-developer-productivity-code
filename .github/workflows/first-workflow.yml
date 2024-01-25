@@ -1,5 +1,4 @@
 jobs:
-  my_first_job:
-    name: My first job
-  my_second_job:
-    name: My second job
+  job1:
+    echo "Step 1 complete"
+    echo "Stop 2 complete"
