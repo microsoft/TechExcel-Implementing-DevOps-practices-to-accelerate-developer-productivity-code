@@ -1,4 +1,4 @@
 jobs:
   job1:
-    echo "Step 1 complete"
-    echo "Stop 2 complete"
+    run: echo "Step 1 complete"
+    run: echo "Stop 2 complete"
