@@ -11,6 +11,10 @@ env:
   LOAD_TEST_RESOURCE: "lt-techexcel-lab"   # set this to your Azure Load Test resource's name
   LOAD_TEST_RESOURCE_GROUP: "rg-devops-techexcel-lab" # set this to the resource group you've used for this training
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   loadTest:
     name: Load Test
