@@ -33,7 +33,7 @@ jobs:
     - name: Step one
       # The 'run' command executes a shell or command script. Because this is Ubuntu, the
       # default run command will be /bin/bash
-      run: echo "Step one complete, enironment variable is $MYVARIABLE"
+      run: echo "Step one complete, single workflow enironment variable is $MYVARIABLE, multi-workflow environment variable is ${{ vars.MYVALUE }}"
       
     - name: Step two
       run: echo "Step 2 complete!"
