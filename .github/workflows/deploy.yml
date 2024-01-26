@@ -1,15 +1,15 @@
-  # We only want to run this script manually.
-  on:
-    workflow_dispatch
+on:
+  workflow_dispatch:
+   inputs:
+    appenv:
+      type: choice
+      description: Choose the target environment
+      options: 
+        - dev
+        - test
+        - prod
 
-  # Environment variables are defined in an "env" section.
-  # We set the target environment to dev.
-  # Open the deploy-advanced.yml file to see how we can accept user input
-  # instead of needing to change this file to switch environments.
-  env:
-    targetEnv: dev
-
-  permissions:
+    permissions:
     id-token: write
     contents: read
 
