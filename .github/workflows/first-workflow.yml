@@ -13,7 +13,11 @@ on:
   workflow_dispatch:
   issues:
    types: [opened]
-
+# This section does not appear in the solution file but demonstrates how to set
+# custom variables that will be available in the run script.
+env:
+  MYVARIABLE: "This is a single workflow environment variable"
+  
 # This section covers the work to perform.
 # We include one or more jobs in this section.
 jobs:
@@ -29,11 +33,8 @@ jobs:
     - name: Step one
       # The 'run' command executes a shell or command script. Because this is Ubuntu, the
       # default run command will be /bin/bash
-      run: echo "Step one complete!"
-      # This section does not appear in the solution file but demonstrates how to set
-      # custom variables that will be available in the run script.
- #     env:
- #       VARIABLE_NAME: value
+      run: echo "Step one complete, enironment variable is $MYVARIABLE"
+      
     - name: Step two
       run: echo "Step 2 complete!"
       
