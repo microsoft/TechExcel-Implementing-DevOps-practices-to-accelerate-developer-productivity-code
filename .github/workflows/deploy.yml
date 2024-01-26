@@ -9,6 +9,10 @@
   env:
     targetEnv: dev
 
+  permissions:
+    id-token: write
+    contents: read
+
   # The overall workflow name will be Azure Bicep. This will show up in the
   # GitHub Action page.
   name: Azure Bicep
