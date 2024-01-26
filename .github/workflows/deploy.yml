@@ -49,4 +49,4 @@ jobs:
         resourceGroupName: rg-devops-techexcel-lab
         template: ./InfrastructureAsCode/main.bicep
         # Use the environment variable called targetEnv
-        parameters: environment=${{ env.targetEnv }}
+        parameters: environment=${{ github.event.inputs.appenv }}
