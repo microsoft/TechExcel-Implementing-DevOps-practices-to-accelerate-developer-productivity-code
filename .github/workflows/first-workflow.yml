@@ -30,3 +30,7 @@ jobs:
       with:
         text: 'Ready for prod–ship it!'
         color: 'magenta'
+    - name: Echo Environment Variable
+      run: echo "My environment variable value is $MY_ENV_VARIABLE"
+      env:
+        MY_ENV_VARIABLE: ${{ env.message }}
