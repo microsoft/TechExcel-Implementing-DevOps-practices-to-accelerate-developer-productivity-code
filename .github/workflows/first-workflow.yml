@@ -49,17 +49,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       Greeting: Yo
-
     steps:
+    - name: test
+      run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+      env:
+        First_Name: JohnQPublic
     - name: Cowsays
       # The 'uses' command executes a remote GitHub action.
       # A command like mscoutermarsh/cowsays-action means you can
       # find this code at https://github.com/mscoutermarsh/cowsays-action
       uses: mscoutermarsh/cowsays-action@master
-      env:
-        First_Name: Schanne
       # The 'with' block includes parameters that the workflow will pass
       # to this action. Parameters are all in key-value format.
       with:
         text:  "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         color: 'magenta'
+      env:
+        First_Name: Schanne
