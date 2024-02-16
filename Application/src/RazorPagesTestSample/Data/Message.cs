@@ -7,6 +7,7 @@ namespace RazorPagesTestSample.Data
     {
         public int Id { get; set; }
 
+        // adding comment so I can put in appropriate commit message
         [Required]
         [DataType(DataType.Text)]
         [StringLength(250, ErrorMessage = "There's a 250 character limit on messages. Please shorten your message.")]
