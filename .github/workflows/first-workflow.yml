@@ -62,7 +62,7 @@ jobs:
       # The 'with' block includes parameters that the workflow will pass
       # to this action. Parameters are all in key-value format.
       with:
-        text:  "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        text:  "${{env.Greeting}} ${{env.First_Name}}. Today is ${{env.DAY_OF_WEEK}}!"
         color: 'magenta'
       env:
         First_Name: Schanne
