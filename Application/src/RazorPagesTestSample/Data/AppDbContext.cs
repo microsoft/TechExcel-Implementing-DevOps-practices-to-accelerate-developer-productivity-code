@@ -78,5 +78,12 @@ namespace RazorPagesTestSample.Data
                 new Message(){ Text = "Todd in Finance would like to have a word with you.  Stop by his desk later." }
             };
         }
+
+        // Write a loop from 0 to 10 and print out the numeric value of the iterator for each loop iteration 
+        for (int i = 0; i <= 10; i++)
+        {
+            Console.WriteLine(i);
+        }
+        
     }
 }
