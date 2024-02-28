@@ -16,3 +16,15 @@ jobs:
 
     - name: Step 2
       run: echo "Step 2 complete"
+
+  job2:
+    name: Second Job
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Cowsays
+      uses: mscoutermarsh/cowsays-action@master
+      with:
+        text: 'Ready for prod--ship it!'
+        color: 'magenta'
