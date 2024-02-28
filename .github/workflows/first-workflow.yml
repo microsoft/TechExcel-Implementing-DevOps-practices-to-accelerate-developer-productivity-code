@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     env:
-      env_variable_job2: "The other Environment Variable"
+      env_variable_job2: "the other Environment Variable"
 
     steps:
     
