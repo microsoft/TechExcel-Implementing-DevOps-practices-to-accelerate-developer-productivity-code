@@ -1,3 +1,4 @@
+name: Deploy Workflow
 # We only want to run this script manually.
 on:
     workflow_dispatch
