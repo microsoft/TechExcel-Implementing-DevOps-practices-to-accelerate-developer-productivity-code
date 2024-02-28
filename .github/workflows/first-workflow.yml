@@ -35,6 +35,7 @@ jobs:
       run: echo "Log from step two"
 
   job2:
+    needs: [job1]
     #Use a GitHub Action named: CowSays
     runs-on: ubuntu-latest
 
