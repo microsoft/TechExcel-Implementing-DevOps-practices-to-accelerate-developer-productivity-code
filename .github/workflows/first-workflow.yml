@@ -16,7 +16,7 @@ jobs:
     steps:
     
     - name: Step 1
-      run: echo "Step 1 complete - with $env_variable_job1"
+      run: echo "Step 1 complete - with ${{ env.env_variable_job1}}"
 
     - name: Step 2
       run: echo "Step 2 complete"
