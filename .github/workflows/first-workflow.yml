@@ -2,7 +2,7 @@ name: first-workflow
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
     Explore-Github-Actions:
         runs-on: ubuntu-latest
