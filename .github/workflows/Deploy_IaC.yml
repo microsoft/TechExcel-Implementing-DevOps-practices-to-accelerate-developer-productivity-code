@@ -1,8 +1,13 @@
 on:
-  workflow_dispatch
-
+  workflow_dispatch:
+    inputs:
+      targetEnv:
+        description: 'Environment (dev, test, prod)'
+        required: true
+        type: string
+ 
 env:
-  targetEnv: dev
+  targetEnv: ${{ inputs.targetEnv }}
 
 name: Azure Bicep
 jobs:
