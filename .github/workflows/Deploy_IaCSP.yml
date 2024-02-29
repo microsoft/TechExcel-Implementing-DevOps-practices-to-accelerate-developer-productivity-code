@@ -1,5 +1,6 @@
 name: Deploy Bicep file
-on: [push]
+on: workflow_dispatch
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,7 +17,7 @@ jobs:
     - name: Deploy Bicep file
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./DeployIaCSP.bicep
         parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
