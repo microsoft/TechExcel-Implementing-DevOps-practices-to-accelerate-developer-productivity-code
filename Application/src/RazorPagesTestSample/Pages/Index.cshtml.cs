@@ -59,6 +59,8 @@ namespace RazorPagesTestSample.Pages
 
             return RedirectToPage();
         }
+      
+
 
         public async Task<IActionResult> OnPostAnalyzeMessagesAsync()
         {
