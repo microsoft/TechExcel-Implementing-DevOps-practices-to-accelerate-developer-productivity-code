@@ -19,6 +19,6 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./DeployIaCSP.bicep
+        template: ./InfrastructureAsCode/main.bicep
         parameters: 'storagePrefix=csb10032003568a3923 storageSKU=Standard_LRS'
         failOnStdErr: false
