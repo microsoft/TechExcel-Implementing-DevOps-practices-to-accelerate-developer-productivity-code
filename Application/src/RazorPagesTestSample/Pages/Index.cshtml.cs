@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTestSample.Data;
 using System.Threading;
+using System.IO;
+using System.IO.Compression;
 
 namespace RazorPagesTestSample.Pages
 {
@@ -88,6 +90,12 @@ namespace RazorPagesTestSample.Pages
             }
 
             return RedirectToPage();
+        }
+
+        public static void WriteToDirectory(ZipArchiveEntry entry, string destDirectory)
+        {
+            string destFileName = Path.Combine(destDirectory, entry.FullName);
+            entry.ExtractToFile(destFileName);
         }
     }
 }
