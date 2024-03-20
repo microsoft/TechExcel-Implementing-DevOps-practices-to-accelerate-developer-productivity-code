@@ -1,0 +1,12 @@
+name: first-workflow
+on:
+  push:
+    branches:
+      - master
+jobs:
+    Explore-Github-Actions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Step 1 complete"
+            - run: echo "Step 2 complete"
+    
