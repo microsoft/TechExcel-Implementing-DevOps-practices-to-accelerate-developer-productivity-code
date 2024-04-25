@@ -11,9 +11,9 @@ jobs:
 
     steps:
     - name: Step one
-      run: echo "Log from step one"
+      run: echo "Step 1 complete!"
     - name: Step two
-      run: echo "Log from step two"
+      run: echo "Step 2 complete!"
       
   job2:
     needs: job1
@@ -23,5 +23,5 @@ jobs:
     - name: Cowsays
       uses: mscoutermarsh/cowsays-action@master
       with:
-        text: 'Ready for prod--ship it!'
+        text: 'Ready for prod-ship it!'
         color: 'magenta'
