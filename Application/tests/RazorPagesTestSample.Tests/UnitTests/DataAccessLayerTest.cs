@@ -10,6 +10,23 @@ namespace RazorPagesTestSample.Tests.UnitTests
     public class DataAccessLayerTest
     {
         [Fact]
+        public async Task MessageLengthShouldBeLimited()
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                // Arrange
+                var message = new Message() { Id = 1, Text = new string('a', 251) };
+
+                // Act
+                await db.AddMessageAsync(message);
+
+                // Assert
+                var actualMessage = await db.FindAsync<Message>(message.Id);
+                Assert.Null(actualMessage);
+            }
+        }
+
+        [Fact]
         public async Task GetMessagesAsync_MessagesAreReturned()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
