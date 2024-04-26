@@ -1,0 +1,28 @@
+name: First Workflow
+
+on:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 'Step 1'
+                run: |
+                    echo "Step 1 complete!"
+
+            - name: 'Step 2'
+                run: |
+                    echo "Step 2 complete!"
+
+    job2:
+        runs-on: ubuntu-latest
+
+        steps:
+            steps:
+                - name: Ship it
+                  uses: mscoutermarsh/cowsays-action@master
+                  with:
+                    text: 'Ready for prod-ship it!'
+                    color: 'magenta'
