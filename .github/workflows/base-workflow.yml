@@ -12,10 +12,10 @@ jobs:
       MYNAME: "vimorra"
 
     steps:
-    - name: Step one
+    - name: "Step one"
       run: echo "Log from step one"
-    - name: Step two
-      run: echo MYNAME: ${{ env.MYNAME }}
+    - name: "Step two"
+      run: echo "Myname is $MYNAME"
       
   job2:
     needs: job1
