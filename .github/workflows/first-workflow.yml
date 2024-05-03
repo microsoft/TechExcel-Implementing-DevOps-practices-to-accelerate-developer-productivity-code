@@ -1,0 +1,52 @@
+# The name of the job is what will display on the GitHub repository in the Actions tab.
+name: First Workflow
+
+# The 'on' section tells GitHub under what conditions we want to run this workflow.
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+# Common scenarios include:
+  # workflow-dispatch (manual execution)
+  # issues
+  # push
+  # pull_request
+  # schedule
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+
+# This section covers the work to perform.
+# We include one or more jobs in this section.
+jobs:
+  # Each individual job will include details like execution order,
+  # pre-requisite jobs, and execution platform.
+  job1:
+    # We can run jobs on GitHub hosted VM runners in Windows, Ubuntu, and Mac OS.
+    # We can also run jobs on self-hosted hardware.
+    runs-on: ubuntu-latest
+
+    # Each job contains one or more steps. A step needs to have at least a name and a command.
+    steps:
+    - name: Step one
+      # The 'run' command executes a shell or command script. Because this is Ubuntu, the
+      # default run command will be /bin/bash
+      run: echo "Log from step one"
+      
+    - name: Step two
+      run: echo "Log from step two"
+
+  job2:
+    needs: [job1]
+    #Use a GitHub Action named: CowSays
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cowsays
+      # You may pin to the exact commit or the version.
+      # uses: mscoutermarsh/cowsays-action@822c8424f7ebc1f4c8b86b0bcb11e4051b7f42e2
+      uses: mscoutermarsh/cowsays-action@v1
+      with:
+        # What does the cow say?
+        text: Ready for prod–ship it! # optional, default is Ship it!!!!!
+        # Color of your cow
+        color: Magenta # optional, default is white
+              
