@@ -1,0 +1,25 @@
+name: first-workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+    Explore-Github-Actions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Step 1 complete"
+            - run: echo "Step 2 complete"
+    Run-Cowsays:
+        runs-on: ubuntu-latest
+        needs: Explore-Github-Actions
+        steps:
+        - name: Ship it
+          uses: mscoutermarsh/cowsays-action@master
+          with:
+            text: "Ready for prod-ship-it"
+            color: magenta
+        
+        
+
+            
+    
